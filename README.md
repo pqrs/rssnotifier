@@ -60,7 +60,7 @@ Contributions are of course very welcome!
 
 ## License
 
-This project and all repositories used are licensed under the MIT License except for [**facebook/php-graph-sdk**](https://github.com/facebook/php-graph-sdk) - see the [LICENSE](LICENSE) file for details.
+This project and all repositories used are licensed under the [MIT License](LICENSE) except for [**facebook/php-graph-sdk**](https://github.com/facebook/php-graph-sdk).
 
-Please see the Facebook SDK for PHP (v5) [license file](https://github.com/facebook/php-graph-sdk/blob/master/LICENSE) here for more information.
+Please see the Facebook SDK for PHP (v5) [license file](https://github.com/facebook/php-graph-sdk/blob/master/LICENSE) for more information.
 
