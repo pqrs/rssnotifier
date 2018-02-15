@@ -94,9 +94,37 @@ if ($newitems = $rss->getNewItems($items) ) {
 
 Whether there are new items in the feed or not, we write a message to our log with the *logit()* function. You'll find the log in your root directory too, named *rssnotifier.log*.
 
+If we want to post the new found item to our facebook page we must add this definitions under the Telegram defines above:
 
+``` php
+define( 'APP_ID',            "XXXXXXXXXXXXXXX" );
+define( 'APP_SECRET',        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" );
+define( 'GROUP_ID',          "XXXXXXXXXXXXXXX" );
+define( 'PAGE_ACCESS_TOKEN', "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" );
+```
 
+And now, inside the foreach loop, under the *logit( "RSS", "New item found [...]* line we wrote before:
 
+``` php
+        $linkData = [                                                       // Sends item link & description to FB page
+            'link'      => $value->link,
+            'message'   => strip_tags($value->description),
+        ];
+
+        if (post2facebookpage(APP_ID, APP_SECRET, GROUP_ID, PAGE_ACCESS_TOKEN, $linkData)) {
+
+            post2telegram(TELEGRAM_USER_ID, BOT_AUTH_TOKEN, "PUBLICADO EN FACEBOOK: " . $value->title . PHP_EOL . PHP_EOL . strip_tags($value->description) . PHP_EOL . PHP_EOL . $value->link );
+            logit( "Facebook", "New publication in Facebook -> $value->title", "info" );           
+
+        } else {
+
+            post2telegram(TELEGRAM_USER_ID, BOT_AUTH_TOKEN, "ERROR: No se pudo publicar en Facebook la noticia '" . $value->title . "'" );
+            logit( "Facebook", "Couldn't publish to Facebook -> $value->title", "error" );
+
+        }
+```
+
+If you want to publish in your personal page instead of a fan page, you shoud use the function *post2facebookpersonalwall()*. You'll only need the parameters APP_ID, APP_SECRET and of course $linkdata.
 
 ## Prerequisites
 
