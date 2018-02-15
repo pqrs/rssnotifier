@@ -54,7 +54,7 @@ And, at least, one of these:
 
 * A Facebook personal or fan page
 * A Twitter account
-* A Telegram account
+* A Telegram account and a Telegram bot
 * An Android application
 
 

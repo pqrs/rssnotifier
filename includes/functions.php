@@ -123,19 +123,19 @@ function post2twitter( $consumer_key, $consumer_secret, $oauth_token, $oauth_sec
 }
 
 
-function androidnotification( $api_access_key, $message ) {
+function androidnotification( $api_access_key, $title, $to, $message ) {
 
     // prep the bundle
     $msg = array (
         'body'          => $texto,
-        'title'         => 'Club de Hockey San Fernando',
+        'title'         => $title,
         'priority'      => 'high',
         'sound'         => 'default',
         'time_to_live'  => 3600
         );
 
     $fields = array(
-        'to'            => '/topics/general',
+        'to'            => $to,
         'notification'  => $msg
         );
 
@@ -172,25 +172,13 @@ function androidnotification( $api_access_key, $message ) {
         return false;
     }
 
-
-    $message_id = substr($result, strpos($result, ":")+1, -1);
-
-    $json = json_decode(file_get_contents("/var/www/vhosts/chsanfernando.org/app.chsanfernando.org/data.txt"), true);
-
-    $data = array('id' => $message_id, 'date' =>  date( "d/m/Y" ), 'time' => date( "H:i" ), 'message' => $texto);
-
-    array_push($json['notifications'], $data);
-
-    file_put_contents('/var/www/vhosts/chsanfernando.org/app.chsanfernando.org/data.txt', json_encode($json));
-
-    echo "Enviada notificación con el texto &quot;$texto&quot.<br><br>";
 }
 
 
 
 function logit( $logger, $message, $type ) {
 
-    $logfile = $_SERVER['DOCUMENT_ROOT'] . dirname($_SERVER['PHP_SELF']) . '/your.log';
+    $logfile = $_SERVER['DOCUMENT_ROOT'] . dirname($_SERVER['PHP_SELF']) . '/rssnotifier.log';
 
     $logger = new Logger($logger);
 
