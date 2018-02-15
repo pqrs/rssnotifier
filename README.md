@@ -135,7 +135,7 @@ define( "OAUTH_TOKEN",       "XXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 define( "OAUTH_SECRET",      "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" );
 ```
 
-And then we call the ** function, inside the foreach loop, under the Facebook code we saw above:
+And then we call the *post2twitter* function, inside the foreach loop, under the Facebook code we saw above:
 
 ``` php
         if (post2twitter( CONSUMER_KEY, CONSUMER_SECRET, OAUTH_TOKEN, OAUTH_SECRET, $value->title . " " . $value->link ) ) {
@@ -175,6 +175,8 @@ And, as usual, inside the foreach loop, under the Twitter code:
 ``` 
 
 In further revisions of this repository I will write about how you can get all these keys and create Twitter and Facebook applications.
+
+You can find the file we have just created in [tests folder](tests).
 
 
 ## Prerequisites
