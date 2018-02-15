@@ -4,11 +4,11 @@ Sends a telegram message every time a new item is found in a RSS feed file. Also
 
 This code uses:
 
-* **pqrs/checkrss**: My repo to check RSS feed for new items.
-* **unreal4u/telegram-api**: Telegram bot API implementation for PHP
-* **facebook/php-graph-sdk**: The Facebook SDK for PHP
-* **abraham/twitteroauth**: The most popular PHP library for use with the Twitter OAuth REST API.
-* [**monolog/monolog**](https://github.com/Seldaek/monolog): Sends your logs to files, sockets, inboxes, databases and various web services
+* [**unreal4u/telegram-api**](https://github.com/unreal4u/telegram-api): Telegram bot API implementation for PHP
+* [**facebook/php-graph-sdk**](https://github.com/facebook/php-graph-sdk): The Facebook SDK for PHP
+* [**abraham/twitteroauth**](https://github.com/abraham/twitteroauth): The most popular PHP library for use with the Twitter OAuth REST API.
+* [**Seldaek/monolog**](https://github.com/Seldaek/monolog): Sends your logs to files, sockets, inboxes, databases and various web services.
+* [**pqrs/checkrss**](https://github.com/pqrs/checkrss): My repo to check RSS feed for new items.
 
 
 ## Installation
@@ -17,7 +17,7 @@ This code uses:
 git clone https://github.com/pqrs/rssnotifier.git
 ```
 
-Alternatively, add the dependency directly to your composer.json file:
+Alternatively, add the dependencies directly to your composer.json file:
 
 ```
 "require": {
