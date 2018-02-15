@@ -42,7 +42,7 @@ use CheckRSS\RSS;
 
 ## Usage
 
-Create a file *rssnotifier.php* in the root diretory and let's start with the RSS feed URL you want to check:
+Let's see it with an example. Create a file *rssnotifier.php* in the root diretory and let's start with the RSS feed URL you want to check:
 
 ``` php
 define( "TIMEZONE", "Europe/Madrid"                                         ); // Your timezone
@@ -124,7 +124,58 @@ And now, inside the foreach loop, under the *logit( "RSS", "New item found [...]
         }
 ```
 
-If you want to publish in your personal page instead of a fan page, you shoud use the function *post2facebookpersonalwall()*. You'll only need the parameters APP_ID, APP_SECRET and of course $linkdata.
+If you want to publish in your personal page instead of a fan page, you shoud use the function *post2facebookpersonalwall()*. You'll only need to pass the parameters APP_ID, APP_SECRET and of course $linkdata.
+
+For Twitter, first we add the definitions under the Facebook ones:
+
+``` php
+define( "CONSUMER_KEY",      "XXXXXXXXXXXXXXXXXXXXXXXXX" );
+define( "CONSUMER_SECRET",   "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" );
+define( "OAUTH_TOKEN",       "XXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" );
+define( "OAUTH_SECRET",      "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" );
+```
+
+And then we call the ** function, inside the foreach loop, under the Facebook code we saw above:
+
+``` php
+        if (post2twitter( CONSUMER_KEY, CONSUMER_SECRET, OAUTH_TOKEN, OAUTH_SECRET, $value->title . " " . $value->link ) ) {
+
+            post2telegram(TELEGRAM_USER_ID, BOT_AUTH_TOKEN, "PUBLICADO EN TWITTER: " . $value->title . PHP_EOL . PHP_EOL . strip_tags($value->description) . PHP_EOL . PHP_EOL . $value->link );
+            logit( "Twittter", "New tweet -> $value->title", "info" );
+
+
+        } else {
+
+            post2telegram(TELEGRAM_USER_ID, BOT_AUTH_TOKEN, "ERROR: No se pudo publicar en Twitter la noticia '" . $value->title . "'" );
+            logit( "Twitter", "Couldn't publish to Twitter -> $value->title", "error" );
+
+        }
+```
+
+Finally, for the Android notifications, we define the API access key from Google API's Console:
+
+``` php
+define( "API_ACCESS_KEY", "XXXXXXXXXXX:XXXXXXXXXXXXXXXXXXXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" );
+```
+
+And, as usual, inside the foreach loop, under the Twitter code:
+
+``` php
+        if (androidnotification( API_ACCESS_KEY, $value->title ) ) {
+
+            post2telegram(TELEGRAM_USER_ID, BOT_AUTH_TOKEN, "ENVIADA NOTIFICACIÓN ANDROID: " . $value->title );
+            logit( "Android", "New Android notification -> $value->title", "info" );
+
+        } else { 
+
+            post2telegram(TELEGRAM_USER_ID, BOT_AUTH_TOKEN, "ERROR: No se pudo enviar a dispositivos Android '" . $value->title . "'" );
+            logit( "Android", "Couldn't notify to Android app -> $value->title", "error" );
+
+        }
+``` 
+
+In further revisions of this repository I will write about how you can get all these keys and create Twitter and Facebook applications.
+
 
 ## Prerequisites
 
@@ -133,8 +184,8 @@ If you want to publish in your personal page instead of a fan page, you shoud us
 
 And, at least, one of these:
 
-* A Facebook personal or fan page
-* A Twitter account
+* A Facebook personal or fan page and a Facebook application to connect with
+* A Twitter account and a Twitter application to connect with
 * A Telegram account and a Telegram bot
 * An Android application
 
