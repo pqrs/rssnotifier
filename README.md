@@ -13,7 +13,7 @@ This code uses:
 
 ## Installation
 
-``` bash
+``` 
 git clone https://github.com/pqrs/rssnotifier.git
 ```
 
@@ -60,5 +60,7 @@ Contributions are of course very welcome!
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project and all repositories used are licensed under the MIT License except for [**facebook/php-graph-sdk**](https://github.com/facebook/php-graph-sdk) - see the [LICENSE](LICENSE) file for details.
+
+Please see the Facebook SDK for PHP (v5) [license file](https://github.com/facebook/php-graph-sdk/blob/master/LICENSE) here for more information.
 
