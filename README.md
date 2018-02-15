@@ -13,13 +13,13 @@ This code uses:
 
 ## Installation
 
-``` shell
+``` bash
 git clone https://github.com/pqrs/rssnotifier.git
 ```
 
 Alternatively, add the dependencies directly to your composer.json file:
 
-``` php
+``` 
 "require": {
     "pqrs/checkrss": "dev-master",
     "unreal4u/telegram-api": "~2.3",
