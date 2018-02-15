@@ -2,7 +2,7 @@
 
 Sends a Telegram message every time a new item is found in an RSS feed file. Also posts it to Facebook, Twitter and sends a notification to an Android app and keeps a log of every event.
 
-I use it to connect the content published in a sports club web page with its social networking accounts. Every time one of these events happens I receive a Telegram message. The program is ran through a cron job and produces no screen output but keeps a log of every event.
+I use it to connect the content published in a web site with its social networking accounts. Every time one of these events happens I receive a Telegram message. The program is ran through a cron job and produces no screen output but keeps a log of every event.
 
 This code uses:
 
@@ -40,14 +40,22 @@ use CheckRSS\RSS;
 ```
 
 
-## Examples
+## Usage
 
-You will find some uses for these functions in [tests folder](tests). **I'm currently writing it, please come back in a few days**
+**I'm currently writing it, please come back in a few days**
 
 
 ## Prerequisites
 
-PHP 7
+* PHP 7
+* An RSS feed to start it all
+
+And, at least, one of these:
+
+* A Facebook personal or fan page
+* A Twitter account
+* A Telegram account
+* An Android application
 
 
 ## Contributing
@@ -57,15 +65,11 @@ Contributions are of course very welcome!
 
 ## Credits
 
-* [**unreal4u/telegram-api**](https://github.com/unreal4u/telegram-api): Copyright (c) 2016 Camilo Sperberg
+* [**unreal4u/telegram-api**](https://github.com/unreal4u/telegram-api): Copyright © 2016 Camilo Sperberg
 * [**facebook/php-graph-sdk**](https://github.com/facebook/php-graph-sdk): Copyright © 2017 Facebook, Inc.
-* [**abraham/twitteroauth**](https://github.com/abraham/twitteroauth): Copyright (c) 2009 Abraham Williams - http://abrah.am - abraham@abrah.am
-* [**Seldaek/monolog**](https://github.com/Seldaek/monolog): Copyright (c) 2011-2017 Jordi Boggiano - j.boggiano@seld.be - http://twitter.com/seldaek
+* [**abraham/twitteroauth**](https://github.com/abraham/twitteroauth): Copyright © 2009 Abraham Williams - http://abrah.am - abraham@abrah.am
+* [**Seldaek/monolog**](https://github.com/Seldaek/monolog): Copyright © 2011-2017 Jordi Boggiano - j.boggiano@seld.be - http://twitter.com/seldaek
 * [**pqrs/checkrss**](https://github.com/pqrs/checkrss): Copyright © 2018 Alvaro Piqueras - [pqrs](https://github.com/pqrs)
-
-
-
-
 
 
 ## License
