@@ -1,0 +1,18 @@
+{
+  "name" : "unreal4u/dummy-logger",
+  "description" : "Dummy logger that implements PSR-3 so that my own classes can work with a common base",
+  "require" : {
+    "php" : ">=7.0.0",
+    "psr/log": "~1.0"
+  },
+  "authors" : [ {
+    "name" : "Camilo Sperberg",
+    "email" : "me+ghdummylogger@unreal4u.com"
+  } ],
+  "autoload" : {
+    "psr-4" : {
+      "unreal4u\\Dummy\\" : "src"
+    }
+  },
+  "license" : "MIT"
+}
