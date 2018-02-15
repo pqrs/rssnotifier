@@ -42,7 +42,60 @@ use CheckRSS\RSS;
 
 ## Usage
 
-**I'm currently writing it, please come back in a few days**
+Create a file *rssnotifier.php* in the root diretory and let's start with the RSS feed URL you want to check:
+
+``` php
+define( "TIMEZONE", "Europe/Madrid"                                         ); // Your timezone
+define( "RSS_FEED", "https://www.cnbc.com/id/100727362/device/rss/rss.html" ); // The RSS feed URL
+```
+
+Now, put your Telegram User Id and the Auth Token for your Telegram bot:
+
+``` php
+define( "TELEGRAM_USER_ID", "XXXXXXXX"                                      ); // Your telegram User ID
+define( "BOT_AUTH_TOKEN",   "XXXXXXXXX:XXXXXXXXXXXXXXXXXXXXXXXXXXX-XXXXXXX" ); // Telegram bot token
+```
+
+That's enough for now. Now we are going to check the RSS feed for new items. If there are new ones, we are going to send it to our Telegram through our bot:
+
+``` php
+date_default_timezone_set(TIMEZONE);
+
+require_once __DIR__ . '/vendor/autoload.php';                   // Autoload files using Composer autoload
+
+include __DIR__ . '/includes/functions.php';
+
+use CheckRSS\RSS;
+
+$rss = new RSS;
+
+// Gets all the items published in the rss feed and stores them in $items
+$items = $rss->getItems(RSS_FEED);
+
+// Checks which items are new since last check
+if ($newitems = $rss->getNewItems($items) ) {
+
+    foreach ($newitems as $value) {
+
+        post2telegram(TELEGRAM_USER_ID, BOT_AUTH_TOKEN, "NEW ITEM: " . $value->title);     // Sends item title to telegram
+
+        logit( "RSS", "New item found -> $value->title", "info" );
+
+    }
+
+} else {
+
+	logit( "RSS", "No new items found", "info" );
+
+}
+
+
+```
+
+Whether there are new items in the feed or not, we write a message to our log with the *logit()* function. You'll find the log in your root directory too, named *rssnotifier.log*.
+
+
+
 
 
 ## Prerequisites
