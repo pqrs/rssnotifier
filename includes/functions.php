@@ -7,7 +7,7 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
-    
+
 function post2telegram($user_id, $bot_token, $message) {
 
     $tgLog = new TgLog($bot_token);
@@ -105,17 +105,17 @@ function post2facebookpersonalwall( $app_id, $app_secret, $linkData ) {
 function post2twitter( $consumer_key, $consumer_secret, $oauth_token, $oauth_secret, $message ) {
 
     $connection = new TwitterOAuth( $consumer_key, $consumer_secret, $oauth_token, $oauth_secret );
-    
+
     $content = $connection->get('account/verify_credentials');
 
     $connection->post('statuses/update', array('status' => $message));
 
     if ($connection->getLastHttpCode() == 200) {
-        
+
         return true;
 
     } else {
-        
+
         return false;
 
     }
@@ -127,7 +127,7 @@ function androidnotification( $api_access_key, $title, $to, $message ) {
 
     // prep the bundle
     $msg = array (
-        'body'          => $texto,
+        'body'          => $message,
         'title'         => $title,
         'priority'      => 'high',
         'sound'         => 'default',
@@ -157,14 +157,14 @@ function androidnotification( $api_access_key, $title, $to, $message ) {
 
     curl_close($ch);
 
-    //Decoding json from result 
+    //Decoding json from result
     $res = json_decode($result);
 
     $flag = $res->success;
 
-    //if success is 1 means message is sent 
+    //if success is 1 means message is sent
     if($flag == 1){
-        
+
         return true;
 
     } else {
@@ -195,7 +195,7 @@ function logit( $logger, $message, $type ) {
             break;
     }
 
-    
+
 
 }
 
